@@ -1,2 +1,14 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>user info</h1>
+
+<%= form_with model: @user, url: edit_book_path(@user) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name%>
+
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+
+  <%= f.label :introduction %>
+  <%= f.text_field :introduction %>
+
+  <%= f.submit "反映する" %>
+<% end %>
