@@ -1,8 +1,5 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  def new
-
-  end
 
   def create
     @new_book = Book.new(book_params)
@@ -27,10 +24,17 @@ class BooksController < ApplicationController
   end
 
   def edit
+    @edit_book = Book.find(params[:id])
   end
 
   def update
-
+    if @edit_book = Book.update(params[:id])
+      flash[:notice] = "投稿を編集できました"
+      redirect_to book_path(@edit_book) || root_path
+    else
+      flash[:alert] = "投稿が編集できませんでした。"
+      redirect_to request.referrer || root_path
+    end
   end
 
   def destroy
