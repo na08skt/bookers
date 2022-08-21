@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  def inde
+  def index
   end
 
   def show
