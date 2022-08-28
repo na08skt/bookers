@@ -1,33 +1,43 @@
-<%= render 'users/user_info', user: current_user %>
-<%= render 'books/new.book', new_book: @new_book %>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <%= render 'users/user_info', user: current_user %>
+      <%= render 'books/new.book', new_book: @new_book %>
+    </div>
+    <div class="col-8">
+      <h1>Users</h1>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <th>
-      image
-    </th>
-    <th>
-      name
-    </th>
-    <th></th>
-  </thead>
-  <% @user_index.each do |user|%>
-    <tbody>
-      <td>
-        <% if user.image.attached? %>
-          <%= image_tag user.image, size: "100x100" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
+      <table>
+        <thead>
+          <th>
+            image
+          </th>
+          <th>
+            name
+          </th>
+          <th></th>
+        </thead>
+        <% @user_index.each do |user|%>
+          <tbody>
+            <td>
+              <% if user.image.attached? %>
+                <%= image_tag user.image, size: "100x100" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.name%>
+            </td>
+            <td>
+              <%= link_to "Show", user_path(user) %>
+            </td>
+          </tbody>
         <% end %>
-      </td>
-      <td>
-        <%= user.name%>
-      </td>
-      <td>
-        <%= link_to "Show", user_path(user) %>
-      </td>
-    </tbody>
-  <% end %>
-</table>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
