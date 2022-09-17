@@ -5,31 +5,7 @@
             <%= render 'books/new.book', new_book: @new_book %>
         </div>
         <div class="col-8">
-            <h1>Books</h1>
-            <table>
-                <thead>
-                    <th></th>
-                    <th>Title</th>
-                    <th>Opinion</th>
-                    <th></th>
-                </thead>
-                <% if @books.present? %>
-                    <% @books.each do |book| %>
-                        <tbody>
-                            <td></td>
-                            <td>
-                                <%= link_to book_path(book) do %>
-                                    <%= book.title %>
-                                <% end %>
-                            </td>
-                            <td>
-                                <%= book.body %>
-                            </td>
-                            <td></td>
-                        </tbody>
-                    <% end %>
-                <% end %>
-            </table>
+            <%= render 'books/books', objects: @books %>
         </div>
     </div>
 </div>

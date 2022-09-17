@@ -1,9 +1,6 @@
-<%= render 'users/user_info', user: current_user %>
-<%= render 'books/new.book', book: @new_book %>
-
 <h1>Books</h1>
-<% if @all_books.present? %>
-  <% @all_books.each do |book| %>
+<% if objects.present? %>
+  <% objects.each do |obj| %>
     <table>
       <thead>
         <th></th>
@@ -12,19 +9,19 @@
       </thead>
       <tbody>
         <td>
-          <% if book.image.attached? %>
-            <%= image_tag book.image, size: "200x200" %>
+          <% if obj.image.attached? %>
+            <%= image_tag obj.image, size: "200x200" %>
           <% else %>
             <%= image_tag 'no_image', size: "200x200" %>
           <% end %>
         </td>
         <td>
-          <%= link_to book_path(book) do %>
-            <%= book.title %>
+          <%= link_to book_path(obj) do %>
+            <%= obj.title %>
           <% end %>
         </td>
         <td>
-          <%= book.body %>
+          <%= obj.body %>
         </td>
       </tbody>
     </table>
