@@ -1,32 +1,41 @@
-<%= render 'users/user_info', user: current_user %>
-<%= render 'books/new.book', book: @new_book %>
+<div class="contaniner">
+  <div class="row">
+    <div class="col-4">
+      <%= render 'users/user_info', user: current_user%>
+      <%= render 'books/new.book', new_book: @new_book %>
+    </div>
+    <div class="col-8">
+      <h1>Books</h1>
+      <% if @all_books.present? %>
+        <% @all_books.each do |book| %>
+          <table>
+            <thead>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </thead>
+            <tbody>
+              <td>
+                <% if book.image.attached? %>
+                  <%= image_tag book.image, size: "200x200" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "200x200" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(book) do %>
+                  <%= book.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h1>Books</h1>
-<% if @all_books.present? %>
-  <% @all_books.each do |book| %>
-    <table>
-      <thead>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-      </thead>
-      <tbody>
-        <td>
-          <% if book.image.attached? %>
-            <%= image_tag book.image, size: "200x200" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "200x200" %>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to book_path(book) do %>
-            <%= book.title %>
-          <% end %>
-        </td>
-        <td>
-          <%= book.body %>
-        </td>
-      </tbody>
-    </table>
-  <% end %>
-<% end %>
+
